@@ -6,7 +6,7 @@ class Solution:
             return []
 
         def distance(x, y):
-            return x**2 + y**2
+            return x**2 + y**2 # note you do not use sqrt here, as using integer to represent the distance is more accurate
 
         heap = [(distance(x, y), x, y) for x, y in points]
         print("heap", heap) #[(10, 1, 3), (8, -2, 2)]
