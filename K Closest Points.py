@@ -9,7 +9,9 @@ class Solution:
             return x**2 + y**2
 
         heap = [(distance(x, y), x, y) for x, y in points]
+        print("heap", heap) #[(10, 1, 3), (8, -2, 2)]
         heapify(heap)
+        print("heap af", heap) # here the distance got heapified: [(8, -2, 2), (10, 1, 3)]
 
         res = []
         for _ in range(k):
