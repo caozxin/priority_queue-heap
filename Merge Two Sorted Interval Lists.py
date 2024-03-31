@@ -54,8 +54,8 @@ class Solution:
 
     
 
-    def merge_two_interval(self, list1: List[Interval], list2: List[Interval]) -> List[Interval]:
-        if not list1 and not list2:
+    def merge_two_interval_def(self, list1: List[Interval], list2: List[Interval]) -> List[Interval]:
+        if not list1 and not list2: # None handling, return the null of expected result format
             return []
 
         merged_intervals = []
@@ -82,3 +82,31 @@ class Solution:
         merged_intervals.extend(list2_queue)
 
         return merged_intervals
+
+
+    def merge_two_interval(self, list1, list2):
+        # write your code here
+        res = []
+        index1, index2, size1, size2 = 0, 0, len(list1), len(list2)
+        while index1 < size1 or index2 < size2:
+            if index1 == size1:
+                self.merge(res, list2[index2])
+                index2 += 1 
+            elif index2 == size2:
+                self.merge(res, list1[index1])
+                index1 += 1 
+            elif list1[index1].start < list2[index2].start:
+                self.merge(res, list1[index1])
+                index1 += 1 
+            else:
+                self.merge(res, list2[index2])
+                index2 += 1 
+        return res    
+        
+    def merge(self, res, interval):
+        if not res:
+            res.append(interval)
+        elif res[-1].end >= interval.start:
+            res[-1].end = max(res[-1].end, interval.end)
+        else:
+            res.append(interval)
