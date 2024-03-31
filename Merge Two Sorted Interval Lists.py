@@ -1,28 +1,13 @@
-from typing import (
-    List,
-)
-from lintcode import (
-    Interval,
-)
-
-from heapq import heapify, heappop, heappush
+from typing import List
 from collections import deque
 
-"""
-Definition of Interval:
-class Interval(object):
+class Interval:
     def __init__(self, start, end):
         self.start = start
         self.end = end
-"""
 
 class Solution:
-    """
-    @param list1: one of the given list
-    @param list2: another list
-    @return: the new sorted list of interval
-    """
-    def merge_two_interval(self, list1: List[Interval], list2: List[Interval]) -> List[Interval]:
+    def merge_two_interval_testing(self, list1: List[Interval], list2: List[Interval]) -> List[Interval]:
         # write your code here
 
         if not list1 and not list2: # None handling, return the null of expected result format
@@ -69,8 +54,31 @@ class Solution:
 
     
 
+    def merge_two_interval(self, list1: List[Interval], list2: List[Interval]) -> List[Interval]:
+        if not list1 and not list2:
+            return []
 
+        merged_intervals = []
+        list1_queue = deque(list1)
+        list2_queue = deque(list2)
 
+        while list1_queue and list2_queue:
+            interval1 = list1_queue.popleft()
+            interval2 = list2_queue.popleft()
 
+            if interval1.end < interval2.start:
+                merged_intervals.append(interval1)
+                list2_queue.appendleft(interval2)
+            elif interval2.end < interval1.start:
+                merged_intervals.append(interval2)
+                list1_queue.appendleft(interval1)
+            else:
+                new_start = min(interval1.start, interval2.start)
+                new_end = max(interval1.end, interval2.end)
+                merged_intervals.append(Interval(new_start, new_end))
 
+        # Add remaining intervals from list1_queue and list2_queue if any
+        merged_intervals.extend(list1_queue)
+        merged_intervals.extend(list2_queue)
 
+        return merged_intervals
