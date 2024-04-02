@@ -110,3 +110,60 @@ class Solution:
             res[-1].end = max(res[-1].end, interval.end)
         else:
             res.append(interval)
+
+
+
+    def print_res(self, res):
+
+        if len(res) > 0:
+            for each in res:
+                print(" print_res:", each.start, each.end)
+
+    def merge(self, res, interval):
+        if not res:
+            res.append(interval)
+        elif res[-1].end >= interval.start: # last Interval in res, this check for overlapping. 
+            res[-1].end = max(res[-1].end, interval.end)
+        else:
+            res.append(interval)
+
+    def merge_two_interval_attempt(self, list1: List[Interval], list2: List[Interval]) -> List[Interval]:
+        # write your code here
+
+        if not list1 and not list2: # None handling, return the null of expected result format
+            return []
+
+        res = []
+        list1_queue = deque(list1)
+        list2_queue = deque(list2)
+
+        while len(list1_queue) > 0 or len(list2_queue)>0:
+
+            if len(list1_queue) > 0 and len(list2_queue)>0:
+                interval1 = list1_queue.popleft()
+                interval2 = list2_queue.popleft()
+                
+                if interval1.end <= interval2.start: # this also check if interval1 and interval2 have overlap
+                    self.merge(res, interval1)
+                    print("res1", self.print_res(res))
+                    # exit()
+                    self.merge(res, interval2)
+                    print("res2", self.print_res(res))
+                # exit()
+            if len(list1_queue) > 0 and len(list2_queue) == 0:
+                interval1 = list1_queue.popleft()
+                self.merge(res, interval1)
+                # exit()
+
+            if len(list2_queue) > 0 and len(list1_queue) == 0:
+                interval2 = list2_queue.popleft()
+                self.merge(res, interval2)
+            
+        return res
+    
+
+
+
+
+
+
