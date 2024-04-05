@@ -127,7 +127,7 @@ class Solution:
         else:
             res.append(interval)
 
-    def merge_two_interval_attempt(self, list1: List[Interval], list2: List[Interval]) -> List[Interval]:
+    def merge_two_interval_attempt(self, list1: List[Interval], list2: List[Interval]) -> List[Interval]: # this needs to be updated. 
         # write your code here
 
         if not list1 and not list2: # None handling, return the null of expected result format
