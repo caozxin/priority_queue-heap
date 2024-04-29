@@ -18,4 +18,4 @@ class Solution:
             _, x, y = heappop(heap)
             res.append([x, y])
 
-        return res
+        return res # initalization
