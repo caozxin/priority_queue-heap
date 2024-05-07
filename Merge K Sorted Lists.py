@@ -27,7 +27,12 @@ from typing import List
 def merge_k_sorted_lists(lists: List[List[int]]) -> List[int]:
     # WRITE YOUR BRILLIANT CODE HERE
     print("result: ", lists)
-    return []
+    #None handling:
+    if not lists:
+        return []
+
+    # for each_sublist in lists
+
 
 input = [[1, 3, 5], [2, 4, 6], [7, 10]]
 merge_k_sorted_lists(input)
