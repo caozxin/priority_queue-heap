@@ -33,33 +33,22 @@ def merge_k_sorted_lists(lists: List[List[int]]) -> List[int]:
     if not lists:
         return []
 
-    new_list = []
-    for each_sublist in lists:
-        print(each_sublist)
-        # each_sublist = heapq.heapify(each_sublist)
-        # each_sublist = heapq.heapify(each_sublist)
-        new_list += each_sublist
+    res = []
+    heap = []
+    for current_list in lists:
+        # push first number of each list into the heap
+        heappush(heap, (current_list[0], current_list, 0)) # 1
 
-        # while len(each_sublist) > 0:
-        #
-        #     if len(new_list) == 0:
-        #         curr_node = heappop(each_sublist) # you need to pop the first one
-        #         new_list.append(curr_node)
-        #         print(new_list)
-        #     else:
-        #         curr_node = heappop(new_list)
-        #         compare_node = heappop(each_sublist)
-        #         print(curr_node, compare_node)
-        #         exit()
-        #         if curr_node < compare_node:
-        #             new_list.append(curr_node)
-        #             heappush(compare_node)
-        #         # else:
+    while heap:
+        val, current_list, head_index = heappop(heap)
+        res.append(val)
+        head_index += 1
+        # if there are more numbers in the list, push into the heap
+        if head_index < len(current_list):
+            heappush(heap, (current_list[head_index], current_list, head_index))
 
-    # print(new_list)
-    heapq.heapify(new_list) # just heapify the whole list does not work!
-    print(new_list)
-    return new_list
+    print("res", res)
+    return res
 
 
 input = [[1, 3, 5], [2, 4, 6], [7, 10]]
