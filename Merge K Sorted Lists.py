@@ -25,7 +25,7 @@ class Solution:
 
 from typing import List
 from heapq import heappop, heappush
-def merge_k_sorted_lists(lists: List[List[int]]) -> List[int]:
+def merge_k_sorted_lists_def(lists: List[List[int]]) -> List[int]:
     # WRITE YOUR BRILLIANT CODE HERE
     # def compare_each_list(list)
     print("result: ", lists)
@@ -49,6 +49,36 @@ def merge_k_sorted_lists(lists: List[List[int]]) -> List[int]:
 
     print("res", res)
     return res
+def merge_k_sorted_lists(lists: List[List[int]]) -> List[int]:
+    # WRITE YOUR BRILLIANT CODE HERE
+    # def compare_each_list(list)
+    print("result: ", lists)
+    #None handling:
+    if not lists:
+        return []
+
+    res = []
+    heap = []
+    n = len(lists)
+
+    for current_list in lists:
+        # push first number of each list into the heap
+        heappush(heap, (heappop(current_list), current_list, 0))  # 1
+
+    print("remaining lists: ", lists)
+    print("heap", heap)
+    exit()
+
+    while heap:
+        curr_node = heappop(heap)
+        print(curr_node, heap)
+
+        for each_list in lists:
+            compare_node = heappop(each_list)
+            print(curr_node, compare_node)
+            if compare_node:
+                exit()
+
 
 
 input = [[1, 3, 5], [2, 4, 6], [7, 10]]
