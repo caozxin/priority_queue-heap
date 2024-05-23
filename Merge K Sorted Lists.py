@@ -78,17 +78,17 @@ def merge_k_sorted_lists(lists: List[List[int]]) -> List[int]:
             heappush(heap, (heappop(current_list), current_list, 0))
             print("after", heap)
     return res
-    exit()
-
-    while heap:
-        curr_node = heappop(heap)
-        print(curr_node, heap)
-
-        for each_list in lists:
-            compare_node = heappop(each_list)
-            print(curr_node, compare_node)
-            if compare_node:
-                exit()
+    # exit()
+    #
+    # while heap:
+    #     curr_node = heappop(heap)
+    #     print(curr_node, heap)
+    #
+    #     for each_list in lists:
+    #         compare_node = heappop(each_list)
+    #         print(curr_node, compare_node)
+    #         if compare_node:
+    #             exit()
 
 
 
