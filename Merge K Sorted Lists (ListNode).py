@@ -26,7 +26,7 @@ class Solution:
                 return
 
             # print(alist.val)
-            heappush(heap, alist.val )
+            heappush(heap, alist.val)
             # print("heap", heap)
 
             if alist.next:
